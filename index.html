@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>UCSD Science Bowl</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent:#0b5ed7; 
+      --accent-2:#0a66c2;
+      --muted:#6b7280;
+      --bg:#f7f9fc;
+      --card:#ffffff;
+      --radius:14px;
+      --glass: rgba(255,255,255,0.6);
+      --max-width:1100px;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      background: linear-gradient(180deg, #f6f9ff 0%, var(--bg) 60%);
+      color:#0f172a;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding-bottom:50px;
+    }
+
+    .container{max-width:var(--max-width);margin:0 auto;padding:28px}
+
+    header{
+      background:transparent;
+      padding:20px 0;
+      position:sticky;top:0;z-index:50;
+      backdrop-filter: blur(6px);
+    }
+
+    .nav-row{display:flex;align-items:center;justify-content:space-between}
+
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-family:var(--mono);font-size:18px;box-shadow:0 6px 18px rgba(11,78,215,.18)}
+    .brand h1{margin:0;font-size:18px;letter-spacing:0.2px}
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+
+    nav{
+      flex:1;margin-left:32px
+    }
+
+    .nav-inner{display:flex;align-items:center;gap:24px;position:relative}
+    .tabs{display:flex;gap:18px;align-items:center}
+    .tab{
+      position:relative;padding:8px 6px;font-weight:600;background:none;border:0;color:rgba(15,23,42,.88);cursor:pointer;font-size:15px;border-radius:6px
+    }
+    .tab:focus{outline:2px solid rgba(11,78,215,.15)}
+
+    .underline{
+      position:absolute;left:0;top:100%;height:3px;border-radius:4px;background:var(--accent);transform:translateY(8px);transition:all .25s cubic-bezier(.2,.9,.2,1);pointer-events:none;width:0
+    }
+
+    .cta{display:flex;gap:12px;align-items:center}
+    .btn{background:var(--accent);color:white;padding:10px 14px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+    .btn.secondary{background:transparent;color:var(--accent);border:1px solid rgba(11,78,215,.12)}
+
+    .hero{padding:44px 0;display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:center}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,.9));padding:28px;border-radius:18px;box-shadow:0 10px 30px rgba(16,24,40,.06)}
+    h2{margin:0 0 8px 0;font-size:28px}
+    p.lead{color:var(--muted);margin:0 0 18px}
+
+    .stats{display:flex;gap:12px;margin-top:12px}
+    .stat{background:var(--card);padding:12px;border-radius:12px;min-width:80px;text-align:center;box-shadow:0 6px 20px rgba(10,30,60,.04)}
+    .stat strong{display:block;font-size:18px}
+    .stat span{font-size:12px;color:var(--muted)}
+
+    section.page{padding:44px 0}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 8px 24px rgba(12,20,40,.04)}
+    .card h3{margin:0 0 8px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+
+    footer{padding:28px 0;color:var(--muted);font-size:14px}
+
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      .nav-inner{gap:12px}
+      .tabs{display:none}
+    }
+
+  
+    form{display:flex;flex-direction:column;gap:10px}
+    label{font-size:13px}
+    input,textarea,select{padding:10px;border-radius:8px;border:1px solid #e6eefc;font-size:14px}
+    textarea{min-height:120px}
+
+    .muted{color:var(--muted)}
+
+    .tab.active{color:var(--accent)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-row">
+      <div class="brand">
+        <div class="logo">SC</div>
+        <div>
+          <h1>UCSD Science Bowl</h1>
+          <p class="muted">Regional Invitational • Teams • Volunteers</p>
+        </div>
+      </div>
+
+      <nav aria-label="Main">
+        <div class="nav-inner">
+          <div class="tabs" role="tablist">
+            <button class="tab" role="tab" data-target="home">Home</button>
+            <button class="tab" role="tab" data-target="invitational">Invitational</button>
+            <button class="tab" role="tab" data-target="volunteer">Volunteer</button>
+            <button class="tab" role="tab" data-target="about">About</button>
+            <button class="tab" role="tab" data-target="contact">Contact</button>
+          </div>
+
+          <div class="underline" id="nav-underline" aria-hidden="true"></div>
+
+          <div class="cta">
+            <button class="btn" id="registerBtn">Register</button>
+            <button class="btn secondary">Sponsor</button>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="home" class="page page-active">
+      <div class="hero">
+        <div class="hero-card">
+          <h2>Welcome to the UCSD Science Bowl Invitational</h2>
+          <p class="lead">A competitive, fast-paced science quiz competition for high-school teams. Questions cover physics, chemistry, biology, earth & space science, and mathematics.</p>
+
+          <div class="stats">
+            <div class="stat"><strong>40+</strong><span>Teams</span></div>
+            <div class="stat"><strong>8</strong><span>Rounds</span></div>
+            <div class="stat"><strong>2026</strong><span>Season</span></div>
+          </div>
+
+          <div style="margin-top:18px;display:flex;gap:10px;align-items:center">
+            <button class="btn" onclick="openSection('invitational')">Learn more</button>
+            <button class="btn secondary">Volunteer</button>
+          </div>
+        </div>
+
+        <aside>
+          <div class="card">
+            <h3>Quick Links</h3>
+            <p class="muted">Rules • Schedule • Team Check-in • Resources</p>
+            <ul class="muted" style="margin-top:12px">
+              <li>Eligibility & Rules</li>
+              <li>Registration Portal</li>
+              <li>Volunteer Signup</li>
+            </ul>
+          </div>
+
+          <div style="height:18px"></div>
+
+          <div class="card" style="display:flex;flex-direction:column;gap:6px;margin-top:12px">
+            <strong>Upcoming: Regional Qualifier</strong>
+            <span class="muted">Sat, March 7th — Applied Physics and Math Building </span>
+            <small class="muted">Check schedule for room assignments & arrival times.</small>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="invitational" class="page" hidden>
+      <h2>Invitational</h2>
+      <p class="muted">Everything teams need to know about competition format, rules, and resources.</p>
+      <div style="height:18px"></div>
+      <div class="grid-3">
+        <div class="card"><h3>Format</h3><p>Teams of four compete in buzzer rounds and team problem-solving.</p></div>
+        <div class="card"><h3>Rules</h3><p>Follow the official US Department of Energy Science Bowl rules and local modifications.</p></div>
+        <div class="card"><h3>Resources</h3><p>Past questions, practice packets, and scoring sheets.</p></div>
+      </div>
+    </section>
+
+    <section id="volunteer" class="page" hidden>
+      <h2>Volunteer</h2>
+      <p class="muted">We rely on volunteers for moderators, scorers, and proctors. Volunteers receive training and refreshments.</p>
+      <div style="height:18px"></div>
+      <div class="card">
+        <h3>Volunteer Roles</h3>
+        <p class="muted">Moderator, Scorekeeper, Runner, Check-in Desk. Shifts last ~4-6 hours.</p>
+        <div style="margin-top:12px">
+          <button class="btn">Sign up</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="page" hidden>
+      <h2>About</h2>
+      <p class="muted">UCSD Science Bowl is a student-run event hosted by UC San Diego to inspire and challenge high school students in STEM.</p>
+      <div style="height:18px"></div>
+      <div class="grid-3">
+        <div class="card"><h3>Our Mission</h3><p>Encourage interest in STEM through friendly competition and community.</p></div>
+        <div class="card"><h3>History</h3><p>Founded by students and faculty supporters — decades of regional competition.</p></div>
+        <div class="card"><h3>Contact</h3><p class="muted">Email: sciencebowl@ucsd.edu</p></div>
+      </div>
+    </section>
+
+    <section id="contact" class="page" hidden>
+      <h2>Contact</h2>
+      <p class="muted">Questions about registration, rules, or volunteering? Reach out.</p>
+      <div style="height:18px"></div>
+      <div class="card">
+        <form id="contactForm" onsubmit="event.preventDefault();alert('Thanks — form submitted (demo).');">
+          <label for="name">Name</label>
+          <input id="name" name="name" placeholder="Your name" required />
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" placeholder="you@example.com" required />
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us how we can help" required></textarea>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button class="btn" type="submit">Send</button>
+            <button class="btn secondary" type="reset">Reset</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <div>
+        <strong>UCSD Science Bowl</strong>
+        <div class="muted">University of California, San Diego — Student-run</div>
+      </div>
+      <div class="muted">© UCSD Science Bowl • All rights reserved</div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const tabs = Array.from(document.querySelectorAll('.tab'));
+      const underline = document.getElementById('nav-underline');
+      const tabContainer = document.querySelector('.tabs');
+
+      function placeUnderline(el){
+        if(!el){ underline.style.width = '0'; return }
+        const rect = el.getBoundingClientRect();
+        const parentRect = tabContainer.getBoundingClientRect();
+        const left = rect.left - parentRect.left;
+        underline.style.width = rect.width + 'px';
+        underline.style.transform = `translateX(${left}px) translateY(8px)`;
+        underline.style.opacity = '1';
+      }
+
+      tabs.forEach(t => {
+        t.addEventListener('mouseenter', (e)=>{ placeUnderline(e.currentTarget) });
+        t.addEventListener('mouseleave', (e)=>{ // return to active tab or hide
+          const active = document.querySelector('.tab.active');
+          placeUnderline(active);
+        });
+
+        t.addEventListener('click', (e)=>{
+          const target = e.currentTarget.dataset.target;
+          openSection(target);
+          tabs.forEach(x=>x.classList.remove('active'));
+          e.currentTarget.classList.add('active');
+        });
+      });
+
+      const first = tabs[0];
+      first.classList.add('active');
+      placeUnderline(first);
+
+      window.openSection = function(id){
+        const pages = document.querySelectorAll('main .page');
+        pages.forEach(p=>{
+          if(p.id === id){ p.hidden = false; p.classList.add('page-active') }
+          else { p.hidden = true; p.classList.remove('page-active') }
+        });
+
+        tabs.forEach(t=>{
+          if(t.dataset.target === id) t.classList.add('active'); else t.classList.remove('active');
+        });
+
+        const active = document.querySelector('.tab.active');
+        placeUnderline(active);
+        window.scrollTo({top:0,behavior:'smooth'});
+      }
+
+      let rTO;
+      window.addEventListener('resize', ()=>{ clearTimeout(rTO); rTO = setTimeout(()=>{ const active = document.querySelector('.tab.active'); placeUnderline(active); },120) });
+
+    })();
+  </script>
+</body>
+</html>
